@@ -1,13 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home.jsx";
 
 import Login from "./pages/Login.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
-import MyAppoinments from "./pages/MyAppoinments.jsx";
-import Appoinment from "./pages/Appoinment.jsx";
 
 import Footer from "./components/Footer.jsx";
 import { ToastContainer } from "react-toastify";
