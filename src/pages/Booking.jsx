@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { TourAppContext } from "../context/TourAppContext";
+import { TourAppContext } from "../context/TourAppContext.jsx";
 import axios from "axios";
 import { toast } from "react-toastify";
 
