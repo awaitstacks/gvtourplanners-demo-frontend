@@ -1,5 +1,5 @@
 import React from "react";
-import { assets } from "../assets/assets.js";
+
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
@@ -23,13 +23,13 @@ const Banner = () => {
         </button>
       </div>
       {/* // Right side */}
-      <div className="hidden md:block md:w-1/2 lg:w-[370px] relative">
+      {/* <div className="hidden md:block md:w-1/2 lg:w-[370px] relative">
         <img
           className="w-full absolute bottom-0 right-0 max-w-md"
           src={assets.appointment_img}
           alt=""
         />
-      </div>
+      </div> */}
     </div>
   );
 };
