@@ -141,7 +141,7 @@
 //         const addonPrice =
 //           Number(t.selectedAddon.amount) || Number(t.selectedAddon.price);
 //         totalAddons += addonPrice;
-//         travellerBalance += addonPrice;
+//         travellerAdvance += addonPrice;
 //       }
 
 //       totalAdvance += travellerAdvance;
@@ -723,44 +723,11 @@ const TourBooking = () => {
       const t = tours.find((tour) => tour._id === tourId);
       setTourInfo(t);
 
-      const allBoardingPoints = new Set();
-      const allDeboardingPoints = new Set();
-
-      t.trainDetails?.forEach((train) => {
-        allBoardingPoints.add(
-          JSON.stringify({
-            stationCode: train.fromCode,
-            stationName: train.fromStation,
-          })
-        );
-        allDeboardingPoints.add(
-          JSON.stringify({
-            stationCode: train.toCode,
-            stationName: train.toStation,
-          })
-        );
-      });
-
-      t.flightDetails?.forEach((flight) => {
-        allBoardingPoints.add(
-          JSON.stringify({
-            stationCode: flight.fromCode,
-            stationName: flight.fromAirport,
-          })
-        );
-        allDeboardingPoints.add(
-          JSON.stringify({
-            stationCode: flight.toCode,
-            stationName: flight.toAirport,
-          })
-        );
-      });
-
+      // Directly use the boardingPoints and deboardingPoints from tourInfo
+      // No need to fetch from train and flight details as per the new requirement
       setTransportPoints({
-        boarding: Array.from(allBoardingPoints).map((item) => JSON.parse(item)),
-        deboarding: Array.from(allDeboardingPoints).map((item) =>
-          JSON.parse(item)
-        ),
+        boarding: t.boardingPoints || [],
+        deboarding: t.deboardingPoints || [],
       });
     }
   }, [tours, tourId]);
@@ -1196,7 +1163,7 @@ const TourBooking = () => {
               <option value="">Select Boarding Point</option>
               {transportPoints.boarding.map((bp, i) => (
                 <option key={i} value={bp.stationCode}>
-                  {bp.stationName}
+                  {bp.stationCode} - {bp.stationName}
                 </option>
               ))}
             </select>
@@ -1223,7 +1190,7 @@ const TourBooking = () => {
               <option value="">Select Deboarding Point</option>
               {transportPoints.deboarding.map((dp, i) => (
                 <option key={i} value={dp.stationCode}>
-                  {dp.stationName}
+                  {dp.stationCode} - {dp.stationName}
                 </option>
               ))}
             </select>
