@@ -8,10 +8,11 @@ export default defineConfig({
   server: {
     port: 5173,
     headers: {
-      // Fix for Google Sign-In popup/iframe communication warning
+      // Keep this! It allows the Google Sign-In popup to talk back to your app
       "Cross-Origin-Opener-Policy": "same-origin-allow-popups",
-      // Optional: Often recommended together with COOP
-      "Cross-Origin-Embedder-Policy": "require-corp",
+
+      // Change 'require-corp' to 'unsafe-none' or remove it entirely
+      "Cross-Origin-Embedder-Policy": "unsafe-none",
     },
   },
 });

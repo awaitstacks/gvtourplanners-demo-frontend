@@ -1,165 +1,175 @@
-import React, { useContext, useState } from "react";
-import { assets } from "../assets/assets.js";
-import { NavLink, useNavigate } from "react-router-dom";
-import { TourAppContext } from "../context/TourAppContext.jsx"; // Make sure this matches your context name
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import Banner from "../components/Banner";
+import TourHeader from "../components/TourHeader";
+import TourSpecialityMenu from "../components/TourSpecialityMenu";
+import TopTours from "../components/TopTours";
+// Import your actual Navbar component
+// import Navbar from "../components/Navbar";
 
-const Navbar = () => {
-  const navigate = useNavigate();
-  const { token, setToken, userData, logout } = useContext(TourAppContext); // Use logout from context
-  const [showMenu, setShowMenu] = useState(false);
+const TourHome = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  // Logout handler
-  const handleLogout = () => {
-    logout(); // This clears token, userData, localStorage, and shows toast
-    navigate("/"); // Redirect to home page
-    setShowMenu(false); // Close mobile menu if open
-  };
+  // Detect scroll to add fixed navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Scroll-in animation for sections
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-reveal");
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    document.querySelectorAll(".scroll-reveal").forEach((el) => {
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400">
-      <img
-        onClick={() => navigate("/")}
-        className="w-44 cursor-pointer"
-        src={assets.logo}
-        alt="Logo"
-      />
-
-      <ul className="hidden md:flex items-start gap-5 font-medium">
-        <NavLink to="/">
-          <li className="py-1">HOME</li>
-          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/doctors">
-          <li className="py-1">ALL DOCTORS</li>
-          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/tours">
-          <li className="py-1">ALL TOURS</li>
-          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/about">
-          <li className="py-1">ABOUT</li>
-          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-        <NavLink to="/contact">
-          <li className="py-1">CONTACT</li>
-          <hr className="border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden" />
-        </NavLink>
-      </ul>
-
-      <div className="flex items-center gap-4">
-        {token && userData ? (
-          <div className="flex items-center gap-2 cursor-pointer group relative">
-            <img
-              className="w-8 rounded-full"
-              src={userData.image || assets.default_profile} // fallback if no image
-              alt="Profile"
-            />
-            <img className="w-2.5" src={assets.dropdown_icon} alt="Dropdown" />
-
-            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block">
-              <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
-                <p
-                  onClick={() => {
-                    navigate("/my-profile");
-                    setShowMenu(false);
-                  }}
-                  className="hover:text-black cursor-pointer"
-                >
-                  My Profile
-                </p>
-                <p
-                  onClick={() => {
-                    navigate("/my-appointments");
-                    setShowMenu(false);
-                  }}
-                  className="hover:text-black cursor-pointer"
-                >
-                  My Appointments
-                </p>
-                <p
-                  onClick={handleLogout}
-                  className="hover:text-black cursor-pointer text-red-600 font-medium"
-                >
-                  Logout
-                </p>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <button
-            onClick={() => navigate("/login")}
-            className="bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block"
-          >
-            Create Account
-          </button>
-        )}
-
-        {/* Mobile Menu Icon */}
-        <img
-          onClick={() => setShowMenu(true)}
-          className="w-6 md:hidden cursor-pointer"
-          src={assets.menu_icon}
-          alt="Menu"
-        />
-
-        {/* Mobile Menu */}
-        <div
-          className={`fixed top-0 right-0 bottom-0 z-20 bg-white transition-all duration-300 overflow-hidden ${
-            showMenu ? "w-full" : "w-0"
-          } md:hidden`}
-        >
-          <div className="flex items-center justify-between px-5 py-6">
-            <img className="w-36" src={assets.logo} alt="Logo" />
-            <img
-              className="w-7 cursor-pointer"
-              onClick={() => setShowMenu(false)}
-              src={assets.cross_icon}
-              alt="Close"
-            />
-          </div>
-
-          <ul className="flex flex-col items-center gap-6 mt-10 px-5 text-lg font-medium">
-            <NavLink onClick={() => setShowMenu(false)} to="/">
-              <p className="px-4 py-2 rounded inline-block">HOME</p>
-            </NavLink>
-            <NavLink onClick={() => setShowMenu(false)} to="/doctors">
-              <p className="px-4 py-2 rounded inline-block">ALL DOCTORS</p>
-            </NavLink>
-            <NavLink onClick={() => setShowMenu(false)} to="/tours">
-              <p className="px-4 py-2 rounded inline-block">ALL TOURS</p>
-            </NavLink>
-            <NavLink onClick={() => setShowMenu(false)} to="/about">
-              <p className="px-4 py-2 rounded inline-block">ABOUT</p>
-            </NavLink>
-            <NavLink onClick={() => setShowMenu(false)} to="/contact">
-              <p className="px-4 py-2 rounded inline-block">CONTACT</p>
-            </NavLink>
-
-            {token ? (
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-white px-8 py-3 rounded-full mt-6"
-              >
-                Logout
-              </button>
-            ) : (
-              <button
-                onClick={() => {
-                  setShowMenu(false);
-                  navigate("/login");
-                }}
-                className="bg-primary text-white px-8 py-3 rounded-full mt-6"
-              >
-                Create Account
-              </button>
-            )}
-          </ul>
+    <div className="relative overflow-hidden">
+      {/* Floating watermark icons */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-10">
+        <div className="absolute top-1/4 left-8 text-8xl text-blue-300 animate-float-slow">
+          📍
+        </div>
+        <div className="absolute top-1/3 right-16 text-9xl text-indigo-300 animate-float-slow delay-1000">
+          🧳
+        </div>
+        <div className="absolute bottom-1/3 left-1/3 text-7xl text-blue-200 animate-float-slow delay-2000">
+          🧭
+        </div>
+        <div className="absolute bottom-44 right-12 text-8xl text-indigo-200 animate-float-slow delay-3000">
+          ✈️
+        </div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-9xl text-blue-100 animate-float-slow delay-4000">
+          🌍
         </div>
       </div>
+
+      {/* Fixed Navbar - appears on scroll */}
+      <div
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? "translate-y-0 bg-white/90 backdrop-blur-md shadow-lg"
+            : "-translate-y-full"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          {/* Replace with your actual logo or brand */}
+          <h1 className="text-2xl font-bold text-indigo-700">TourPlanner</h1>
+
+          {/* Simple navigation links */}
+          <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
+            <a href="#home" className="hover:text-indigo-600 transition">
+              Home
+            </a>
+            <a href="#tours" className="hover:text-indigo-600 transition">
+              Tours
+            </a>
+            <a
+              href="#specialities"
+              className="hover:text-indigo-600 transition"
+            >
+              Specialities
+            </a>
+            <a href="#contact" className="hover:text-indigo-600 transition">
+              Contact
+            </a>
+          </nav>
+
+          {/* Mobile menu button (optional) */}
+          <button className="md:hidden text-2xl">☰</button>
+        </div>
+      </div>
+
+      {/* Add top padding to body content so it doesn't hide under fixed navbar */}
+      <div
+        className={`pt-20 ${
+          isScrolled ? "pt-32" : "pt-20"
+        } transition-all duration-500`}
+      >
+        <div className="relative z-10">
+          <div className="scroll-reveal">
+            <TourHeader />
+          </div>
+
+          <div className="scroll-reveal">
+            <TourSpecialityMenu />
+          </div>
+
+          <div className="scroll-reveal">
+            <TopTours />
+          </div>
+
+          <div className="scroll-reveal">
+            <Banner />
+          </div>
+        </div>
+      </div>
+
+      {/* Animations */}
+      <style jsx global>{`
+        @keyframes float-slow {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-40px) rotate(8deg);
+          }
+        }
+
+        .animate-float-slow {
+          animation: float-slow 25s ease-in-out infinite;
+        }
+
+        .delay-1000 {
+          animation-delay: 1s;
+        }
+        .delay-2000 {
+          animation-delay: 2s;
+        }
+        .delay-3000 {
+          animation-delay: 3s;
+        }
+        .delay-4000 {
+          animation-delay: 4s;
+        }
+
+        .scroll-reveal {
+          opacity: 0;
+          transform: translateY(100px);
+          transition: all 1.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .animate-reveal {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
+      `}</style>
     </div>
   );
 };
 
-export default Navbar;
+export default TourHome;

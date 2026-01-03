@@ -1,70 +1,160 @@
 import React from "react";
-import { assets } from "../assets/assets.js";
 
 const About = () => {
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 text-gray-500">
-        <p>
-          ABOUT <span className="text-gray-700 font-medium">US</span>
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Hero Heading */}
+        <div className="text-center mb-20">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+            About{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
+              Us
+            </span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Crafting meaningful journeys with care, trust, and passion for
+            exploration.
+          </p>
+        </div>
 
-      <div className="my-10 flex flex-col md:flex-row gap-12">
-        <img
-          className="w-full md:max-w-[360px]"
-          src={assets.about_image}
-          alt=""
-        />
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-sm text-gray-600">
-          <p>
-            Welcome to Prescripto, your trusted partner in managing your
-            healthcare needs conveniently and efficiently. At Prescripto, we
-            understand the challenges individuals face when it comes to
-            scheduling doctor appointments and managing their health records.
-          </p>
-          <p>
-            Prescripto is committed to excellence in healthcare technology. We
-            continuously strive to enhance our platform, integrating the latest
-            advancements to improve user experience and deliver superior
-            service. Whether you're booking your first appointment or managing
-            ongoing care, Prescripto is here to support you every step of the
-            way.
-          </p>
-          <b className="text-gray-800">Our Vision</b>
-          <p>
-            Our vision at Prescripto is to create a seamless healthcare
-            experience for every user. We aim to bridge the gap between patients
-            and healthcare providers, making it easier for you to access the
-            care you need, when you need it.
-          </p>
+        {/* Main Content - Image + Text */}
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
+          {/* Left: Image with subtle overlay */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-indigo-700/10 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-700"></div>
+            <img
+              src="/team.png"
+              alt="Peaceful travel landscape"
+              className="w-full rounded-3xl shadow-2xl object-cover h-[500px] group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+
+          {/* Right: Text Content */}
+          <div className="space-y-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+              Your Trusted Travel Companion
+            </h2>
+            <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
+              <p>
+                At{" "}
+                <span className="font-semibold text-indigo-700">
+                  GV - Tour Planners
+                </span>
+                , we believe travel is more than just visiting new places — it's
+                about creating memories, finding peace, and experiencing the
+                world with comfort and joy.
+              </p>
+              <p>
+                Founded with a vision to make travel seamless and stress-free,
+                we partner with experienced planners and trusted providers to
+                offer curated tours that match your pace, preferences, and
+                dreams.
+              </p>
+              <p>
+                From serene hill stations to vibrant cultural trails, every
+                journey is designed with attention to detail, safety, and your
+                well-being at heart.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="text-xl my-4">
-        <p>
-          WHY <span className="text-gray-700 font-semibold">CHOOSE US</span>
-        </p>
-      </div>
-      <div className="flex flex-col md:flex-row mb:20">
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>EFFICIENCY:</b>
-          <p>
-            Streamlined appointment scheduling that fits into your busy
-            lifestyle.
-          </p>
+
+        {/* Our Values / Why Choose Us */}
+        <div className="mb-20">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+            Why Travel With Us
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="group bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg
+                  className="w-9 h-9 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Effortless Planning
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We handle every detail — from transport and stays to meals and
+                guides — so you can relax and enjoy the journey.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="group bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg
+                  className="w-9 h-9 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Trusted & Safe
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Years of experience, verified partners, and 24/7 support ensure
+                your trip is safe, comfortable, and memorable.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group bg-white/70 backdrop-blur-sm rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-gray-100">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <svg
+                  className="w-9 h-9 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                Personalized Experience
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Every tour is thoughtfully designed to match your interests —
+                whether you seek peace, adventure, or culture.
+              </p>
+            </div>
+          </div>
         </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>CONVENIENCE:</b>
-          <p>
-            Access to a network of trusted healthcare professionals in your
-            area.
-          </p>
-        </div>
-        <div className="border px-10 md:px-16 py-8 sm:py-16 flex flex-col gap-5 text-[15px] hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
-          <b>PERSONALIZATION:</b>
-          <p>
-            Tailored recommendations and reminders to help you stay on top of
-            your health.
+
+        {/* Final Message */}
+        <div className="text-center py-16 bg-white/60 backdrop-blur-sm rounded-3xl shadow-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+            Let’s Create Your Perfect Journey
+          </h2>
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Join thousands who have discovered the joy of stress-free,
+            meaningful travel with us.
           </p>
         </div>
       </div>

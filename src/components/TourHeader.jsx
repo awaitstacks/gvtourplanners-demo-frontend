@@ -1,39 +1,87 @@
 import React from "react";
-import { assets } from "../assets/assets.js";
 
 const TourHeader = () => {
   return (
-    <div className="flex flex-col md:flex-row flex-wrap bg-primary rounded-lg px-6 md:px-10 lg:px-20">
-      {/* Left side */}
-      <div className="md:w-1/2 flex flex-col items-start justify-center gap-4 py-10 m-auto md:py-[10vw] md:mb-[-30px]">
-        <p className="text-3xl md:text-4xl lg:text-5xl text-white font-semibold md:leading-tight lg:leading-tight">
-          Book Tour <br />
-          with best tour planners
-        </p>
-        <div className="flex flex-col md:flex-row items-center gap-3 text-white text-sm font-light">
-          <img className="w-28" src={assets.group_profiles} alt="" />
-          <p>
-            Simply browse through our extensive list of group package tours
-            <br className="hidden sm:block" />
-            Book your tour hassle-free
-          </p>
-        </div>
-        <a
-          href="#speciality"
-          className="flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300"
-        >
-          Book Tour <img className="w-3" src={assets.arrow_icon} alt="" />
-        </a>
+    <section className="relative overflow-hidden bg-gradient-to-br from-white-50 via-white-50 to-white-100 py-24 md:py-36">
+      {/* Very subtle calming wave pattern overlay */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(147,197,253,0.3)_0%,transparent_50%),radial-gradient(circle_at_70%_30%,rgba(165,180,252,0.2)_0%,transparent_50%)]"></div>
       </div>
-      {/* Right side */}
-      {/* <div className="md:w-1/2 relative">
-        <img
-          className="w-full md:absolute bottom-0 h-auto rounded-lg"
-          src={assets.header_img}
-          alt=""
-        />
-      </div> */}
-    </div>
+
+      <div className="relative max-w-5xl mx-auto px-6 md:px-12 text-center">
+        <div className="space-y-10 animate-fade-in">
+          {/* Main Heading */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+            Embark on a Journey
+            <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
+              of Peace & Discovery
+            </span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Let us take care of every detail while you relax and immerse
+            yourself in beautiful destinations. Travel with comfort, confidence,
+            and calm — the way it should be.
+          </p>
+
+          {/* Trust Element */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-12">
+            <div className="text-left sm:text-center">
+              <p className="text-gray-700 font-medium text-lg">
+                Trusted by thousands of travelers
+              </p>
+              <p className="text-gray-500 mt-1">
+                4.7/5 from 600+ heartfelt reviews
+              </p>
+            </div>
+          </div>
+
+          {/* Call to Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mt-12">
+            <a
+              href="#speciality"
+              className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-10 py-5 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+            >
+              Explore Our Tours
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Smooth fade-in animation */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in > * {
+          opacity: 0;
+          animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        .animate-fade-in > *:nth-child(1) {
+          animation-delay: 0.2s;
+        }
+        .animate-fade-in > *:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+        .animate-fade-in > *:nth-child(3) {
+          animation-delay: 0.8s;
+        }
+        .animate-fade-in > *:nth-child(4) {
+          animation-delay: 1.1s;
+        }
+      `}</style>
+    </section>
   );
 };
 
