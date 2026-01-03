@@ -29,7 +29,7 @@ const Banner = () => {
   return (
     <section
       ref={bannerRef}
-      className="relative my-20 md:my-28 lg:my-36 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50/30 rounded-3xl shadow-lg mx-6 md:mx-10 lg:mx-20 opacity-0 translate-y-12 transition-all duration-1000 ease-out"
+      className="relative my-16 md:my-24 lg:my-32 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50/30 rounded-3xl shadow-lg mx-4 sm:mx-8 md:mx-12 lg:mx-20 opacity-0 translate-y-12 transition-all duration-1000 ease-out"
     >
       {/* Subtle calming orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -37,18 +37,18 @@ const Banner = () => {
         <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-indigo-200/8 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
       </div>
 
-      <div className="relative grid md:grid-cols-2 items-center gap-10 md:gap-16 px-8 py-16 md:px-16 lg:px-24">
+      <div className="relative grid grid-cols-1 md:grid-cols-2 items-center gap-10 md:gap-16 px-6 sm:px-10 py-16 md:px-16 lg:px-24">
         {/* Left: Text & CTA */}
-        <div className="text-center md:text-left space-y-8 order-2 md:order-1">
+        <div className="text-center md:text-left space-y-8">
           <div className="space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
               Begin Your Journey
               <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-700">
                 With Trusted Planners
               </span>
             </h2>
-            <p className="text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg">
+            <p className="text-base sm:text-lg md:text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto md:mx-0">
               Connect with experienced tour planners who craft peaceful,
               meaningful travel experiences just for you.
             </p>
@@ -56,7 +56,7 @@ const Banner = () => {
 
           <button
             onClick={handleCreateAccount}
-            className="group inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium text-base md:text-lg rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
+            className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium text-base sm:text-lg rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-2xl"
           >
             Create Your Account
             <svg
@@ -76,14 +76,13 @@ const Banner = () => {
         </div>
 
         {/* Right: Beautiful Tour Vector Illustration */}
-        <div className="flex justify-center order-1 md:order-2">
+        <div className="flex justify-center">
           <svg
-            width="380"
-            height="380"
             viewBox="0 0 400 400"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="drop-shadow-xl"
+            className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl drop-shadow-xl"
+            preserveAspectRatio="xMidYMid meet"
           >
             {/* Sky Background */}
             <rect width="400" height="400" rx="200" fill="#e0f2fe" />
