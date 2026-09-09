@@ -6707,7 +6707,7 @@ const TourBooking = () => {
                                 🚆
                               </div>
                               <h3 className="text-lg sm:text-xl font-bold text-gray-800">
-                                TRAIN / TRIP DETAILS
+                                TRAIN WISE ADD-ONS
                               </h3>
                             </div>
                             <p className="text-sm text-gray-500 mt-1">
@@ -6825,7 +6825,7 @@ const TourBooking = () => {
                               ✈️
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold text-gray-800">
-                              FLIGHT DETAILS
+                              FLIGHT WISE ADD-ONS
                             </h3>
                           </div>
 
